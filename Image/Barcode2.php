@@ -1,5 +1,6 @@
 <?php
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4: */
+namespace Image;
 
 /**
  * Image_Barcode2 class
@@ -39,7 +40,7 @@ require_once 'Image/Barcode2/Exception.php';
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/Image_Barcode2
  */
-class Image_Barcode2
+class Barcode2
 {
     /**
      * Image type
@@ -110,19 +111,19 @@ class Image_Barcode2
     ) {
         //Make sure no bad files are included
         if (!preg_match('/^[a-z0-9]+$/', $type)) {
-            throw new Image_Barcode2_Exception('Invalid barcode type ' . $type);
+            throw new \Image_Barcode2_Exception('Invalid barcode type ' . $type);
         }
 
         if (!include_once 'Image/Barcode2/Driver/' . ucfirst($type) . '.php') {
-            throw new Image_Barcode2_Exception($type . ' barcode is not supported');
+            throw new \Image_Barcode2_Exception($type . ' barcode is not supported');
         }
 
-        $classname = 'Image_Barcode2_Driver_' . ucfirst($type);
+        $classname = '\\Image_Barcode2_Driver_' . ucfirst($type);
 
-        $obj = new $classname(new Image_Barcode2_Writer());
+        $obj = new $classname(new \Image_Barcode2_Writer());
 
-        if (!$obj instanceof Image_Barcode2_Driver) {
-            throw new Image_Barcode2_Exception(
+        if (!$obj instanceof \Image_Barcode2_Driver) {
+            throw new \Image_Barcode2_Exception(
                 "'$classname' does not implement Image_Barcode2_Driver"
             );
         }
