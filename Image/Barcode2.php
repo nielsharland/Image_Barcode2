@@ -101,13 +101,13 @@ class Barcode2
      * @since  Image_Barcode2 0.3
      */
     public static function draw($text, 
-        $type = Image_Barcode2::BARCODE_INT25,
-        $imgType = Image_Barcode2::IMAGE_PNG,
+        $type = self::BARCODE_INT25,
+        $imgType = self::IMAGE_PNG,
         $sendToBrowser = true,
         $height = 60,
         $width = 1,
         $showText = true,
-        $rotation = Image_Barcode2::ROTATE_NONE
+        $rotation = self::ROTATE_NONE
     ) {
         //Make sure no bad files are included
         if (!preg_match('/^[a-z0-9]+$/', $type)) {
@@ -128,11 +128,11 @@ class Barcode2
             );
         }
 
-        if (!$obj instanceof Image_Barcode2_DualWidth) {
+        if (!$obj instanceof \Image_Barcode2_DualWidth) {
             $obj->setBarcodeWidth($width);
         }
 
-        if (!$obj instanceof Image_Barcode2_DualHeight) {
+        if (!$obj instanceof \Image_Barcode2_DualHeight) {
             $obj->setBarcodeHeight($height);
         }
 
